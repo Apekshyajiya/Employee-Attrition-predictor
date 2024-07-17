@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 import BannerBackground from "../assets/working2.png"
-import Footer from '../components/Footer'
 import Filler from '../components/Filler'
+import "../styles/Mainpage.css"
+import Navbar from '../components/Navbar'
 
 
 const Home = () => {
@@ -23,7 +23,6 @@ const Home = () => {
           </div>
         </div>
         <Filler />
-        <Footer />
       </div>
   )
 }

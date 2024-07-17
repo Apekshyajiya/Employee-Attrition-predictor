@@ -8,8 +8,8 @@ const Navbar = () => {
         <AnimatedLogo />
         <div className="navbar-links-container">
             <a href="/" className="btn about-us-btn">About Us</a>
-            <a href="/" className="btn login-btn">Login</a>
-            <a href="/" className="btn signup-btn">Sign Up</a>
+            <a href="/login" className="btn login-btn">Login</a>
+            <a href="/sign-up" className="btn signup-btn">Sign Up</a>
       </div>
     </nav>
   )
