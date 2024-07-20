@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom'; 
 import '../styles/LoginSignup.css';
 import AnimatedLogo from '../components/AnimatedLogo'
 
 const SignupPage = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,24 +19,28 @@ const SignupPage = () => {
     uploadImage: '',
     uploadData: '',
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSignedIn(true);
-  };
+    try {
+        const response = await axios.post('http://localhost:8000/api/users/sign-up/', {
+            email,
+            username,
+            password,
+        });
+        console.log('User registered successfully:', response.data);
+    } catch (error) {
+        console.error('Error registering user:', error);
+    }
+};
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({
+    ...formData,
+    [name]: value
+  });
+};
 
-  const handleHomeClick = () => {
-    console.log('Home button clicked');
-  };
+
 
   return (
     <div className='sign-up-page'>
@@ -95,6 +103,16 @@ const SignupPage = () => {
               />
             </div>
             <div className="form-row">
+              <label>Username :</label>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-row">
               <label>Age:</label>
               <input
                 type="number"
@@ -120,7 +138,6 @@ const SignupPage = () => {
                 type="file"
                 name="uploadImage"
                 onChange={handleChange}
-                required
               />
             </div>
             <div className="form-row">
@@ -130,10 +147,9 @@ const SignupPage = () => {
                 name="uploadData"
                 accept=".csv"
                 onChange={handleChange}
-                required
               />
             </div>
-            <button type="submit">Create Account</button>
+            <button type="submit" onClick={handleSubmit}>Create Account</button>
           </form>
         )}
       </div>

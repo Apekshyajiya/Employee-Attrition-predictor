@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom'; 
 import '../styles/LoginSignup.css';
 import AnimatedLogo from '../components/AnimatedLogo'
@@ -10,24 +11,32 @@ const LoginPage = () => {
     email: '',
     password: '',
   });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [token, setToken] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSignedIn(true);
-  };
-
-  const handleHomeClick = () => {
-    console.log('Home button clicked');
-  };
+    try {
+      const response = await axios.post('http://localhost:8000/api/users/login/', {
+          email,
+          password,
+      });
+      setToken(response.data.access); // Store the token in state or localStorage
+      console.log('Logged in successfully:', response.data);
+  } catch (error) {
+      console.error('Error logging in:', error);
+  }
+};
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({
+    ...formData,
+    [name]: value
+  });
+};
 
   return (
     <div className='sign-up-page'>
@@ -46,11 +55,11 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit} className="signup-form">
             <h1>Login</h1>
             <div className="form-row">
-              <label>Username:</label>
+              <label>Email:</label>
               <input
-                type="text"
-                name="Name"
-                value={formData.Name}
+                type="email"
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
@@ -61,17 +70,6 @@ const LoginPage = () => {
                 type="password"
                 name="password"
                 value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            
-            <div className="form-row">
-              <label>Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
                 onChange={handleChange}
                 required
               />
