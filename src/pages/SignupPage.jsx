@@ -4,7 +4,6 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'; 
-import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import '../styles/LoginSignup.css';
 import AnimatedLogo from '../components/AnimatedLogo'
@@ -19,27 +18,10 @@ const client = axios.create({
 
 function SignupPage() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [registrationToggle, setRegistrationToggle] = useState(false);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    client.get("/api/user")
-      .then(res => {
-        console.log('User status:', res.data);
-        setCurrentUser(true);
-      })
-      .catch(error => {
-        console.error('User status error:', error);
-        setCurrentUser(false);
-      });
-  }, []);
-
-  const updateFormBtn = () => {
-    setRegistrationToggle(!registrationToggle);
-  };
 
   const submitRegistration = (e) => {
     e.preventDefault();
@@ -62,60 +44,12 @@ function SignupPage() {
       });
   };
 
-  const submitLogin = (e) => {
-    e.preventDefault();
-    client.post("/api/login", { email, password })
-      .then(res => {
-        console.log('Login response:', res);
-        setCurrentUser(true);
-        toast.success("logged in succesfully! !", {
-          position: "top-center"
-        });
-        navigate("/");
-      })
-      .catch(error => {
-        toast.warn("Login failed. Please check your credentials. !", {
-          position: "top-right"
-        });
-        console.error('Login error:', error);
-      });
-  };
-
-  const submitLogout = (e) => {
-    e.preventDefault();
-    client.post("/api/logout")
-      .then(res => {
-        console.log('Logout response:', res);
-        setCurrentUser(false);
-        toast.success("Successfully logged out!");
-      })
-      .catch(error => {
-        console.error('Logout error:', error);
-        toast.error("Logout failed. Please try again.");
-      });
-  };
 
   return (
     <div className='sign-up-page'>
       <nav className='login-signup-nav'>
         <AnimatedLogo />
         <a href='/' className='btn-home-btn'>Home</a>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-            {currentUser ? (
-              <Navbar.Text>
-                <form onSubmit={submitLogout}>
-                  <Button type="submit" variant="light">Log out</Button>
-                </form>
-              </Navbar.Text>
-            ) : (
-              <Navbar.Text>
-                <Button id="form_btn" onClick={updateFormBtn} variant="light">
-                  {registrationToggle ? "Log in" : "Register"}
-                </Button>
-              </Navbar.Text>
-            )}
-          </Navbar.Collapse>
       </nav>
     <div className="signup-page">
       <div className="login-link">

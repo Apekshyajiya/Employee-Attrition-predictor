@@ -1,0 +1,26 @@
+  const updateFormBtn = () => {
+    setRegistrationToggle(!registrationToggle);
+  };
+
+  <Navbar.Toggle />
+  <Navbar.Collapse className="justify-content-end">
+      {currentUser ? (
+        <Navbar.Text>
+        <form onSubmit={submitLogout}>
+                  <Button type="submit" variant="light">Log out</Button>
+                </form>
+                </Navbar.Text>
+            ) : (
+              <Navbar.Text>
+                <Button id="form_btn" onClick={updateFormBtn} variant="light">
+                  {registrationToggle ? "Log in" : "Register"}
+                </Button>
+              </Navbar.Text>
+            )}
+          </Navbar.Collapse>
+
+
+
+const [registrationToggle, setRegistrationToggle] = useState(false);
+
+<Toaster position="top-right" />
