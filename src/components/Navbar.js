@@ -50,7 +50,7 @@ const Navbar = () => {
     <nav>
         <AnimatedLogo />
         <div className="navbar-links-container">
-            <a href="/" className="btn about-us-btn">About Us</a>
+            <a href="/about-us" className="btn about-us-btn">About Us</a>
             {!isLoggedIn && (
             <>
               <a href="/login" className="btn login-btn">Login</a>
