@@ -19,11 +19,17 @@ const Filler = () => {
                 What is employee attrition?
                 </h1>
                 <p className="filler-primary-text-1">
-                It is a method where employees are either sent bye bye or they resign. It is important to predict it as it can highly effect the companies health and human resounce.
+                It is a method where employees are either sent bye bye or they resign. It is important to predict it as it can highly effect the companies health and human resource. Therefore, it can be defined as employees leaving their organizations for unpredictable or uncontrollable reasons. Many terms make up attrition, the most common being termination, resignation, planned or voluntary retirement, structural changes, long-term illness, layoffs.
                 </p>
-                <div className="about-buttons-container">
-                <p>learn more</p>
-                </div>
+                <a
+                  href={`${process.env.PUBLIC_URL}/assets/about-us.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about-buttons-container"
+                >
+                  <p>Learn more</p>
+                </a>
+
             </div>
         </div>
         <Working />

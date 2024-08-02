@@ -58,30 +58,29 @@ const UserProfile = () => {
               <img src={np} alt="Profile" className="profile-picture" />
               <div className="detail-item">
                 <span className="detail-label">Position:</span>
-                <span className="detail-value">HR</span>
+                <span className="detail-value">&nbsp;&nbsp;HR</span>
               </div>
               <div className="detail-item">
                 <span className="detail-label">Department:</span>
-                <span className="detail-value">IT</span>
+                <span className="detail-value">&nbsp;&nbsp;IT</span>
               </div>
               <div className="detail-item">
                 <span className="detail-label">Date of Join:</span>
-                <span className="detail-value">10/6/24</span>
+                <span className="detail-value">&nbsp;&nbsp;10/6/24</span>
               </div>
               <div className="detail-item">
                 <span className="detail-label">Years of experience:</span>
-                <span className="detail-value">10</span>
+                <span className="detail-value">&nbsp;&nbsp;10</span>
               </div>
               <div className="detail-item">
                 <span className="detail-label">E-mail:</span>
-                <span className="detail-value">{currentUser.user.email}</span>
+                <span className="detail-value">&nbsp;&nbsp;{currentUser.user.email}</span>
               </div>
             </>
           )}
         </div>
-        <button type="submit">View Dataset</button>
-        <button type='view'>Update Dataset</button>
-        <button type='sign-out' onClick={handleLogout}>Logout</button>
+        <a href='/predictor' className='predict-button'>&nbsp;Predict Now</a>
+        <button type='sign-out' className='predict-button' onClick={handleLogout}>&nbsp;Logout</button>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@
   
   .btn-home-btn{
     text-decoration: none;
-    color: whitesmoke;
+    color: black;
     align-items: center;
     margin-right: 3rem;
     font-size: 20px;
@@ -110,8 +110,8 @@
       color: #666;
     }
     
-    .profile-container button {
-      width: 40%;
+    .predict-button {
+      width: 30%;
       padding: 10px 0;
       background-color: #007bff;
       color: white;
@@ -122,14 +122,37 @@
       font-weight: 500;
       transition: background-color 0.3s, transform 0.2s;
       margin: 10px 5px; 
-    }
-    
-    .profile-buttons {
       display: flex;
-      justify-content: space-between; 
+      justify-content: space-around; 
     }
-    
-    .profile-container button:hover {
+
+    .predict-button:hover {
       background-color: #0056b3;
       transform: translateY(-2px);
+    }
+
+    .results-container{
+      margin-left: 500px;
+      margin-right: 500px;
+      padding: 10px;
+      height: 200px;
+      border-radius: 6px;
+      background-image: linear-gradient(to right,#b4c4fc , #d8fcd9);
+    }
+
+    .profile-details-results{
+      display: inline;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .profile-name-extraline{
+      color: grey;
+    }
+    .display-result{
+      font-size: 80px;
+      color: beige;
+    }
+    .final-result-val{
+      font-size: 80px;
+
     }

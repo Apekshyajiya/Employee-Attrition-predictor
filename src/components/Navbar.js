@@ -3,7 +3,6 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import '../styles/Mainpage.css'
 import AnimatedLogo from './AnimatedLogo'
-import '../pages/AboutUs'
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -50,18 +49,24 @@ const Navbar = () => {
     <nav>
         <AnimatedLogo />
         <div className="navbar-links-container">
-            <a href="/about-us" className="btn about-us-btn">About Us</a>
+                <a
+                  href={`${process.env.PUBLIC_URL}/assets/about-us.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn login-btn"
+                >
+                  About Us
+                </a>
+                {isLoggedIn && (
+                <>
+                  <a href="/user" className="btn login-btn">My Profile</a>
+                  <a href="/" className="btn login-btn" onClick={handleLogout}>Logout</a>
+                </>
+          )}
             {!isLoggedIn && (
             <>
               <a href="/login" className="btn login-btn">Login</a>
               <a href="/sign-up" className="btn login-btn">sign up</a>
-            </>
-          )}
-
-          {isLoggedIn && (
-            <>
-            <a href="/user" className="btn login-btn">My Profile</a>
-            <a href="/" className="btn login-btn" onClick={handleLogout}>Logout</a>
             </>
           )}
 

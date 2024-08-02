@@ -1,4 +1,0 @@
-
-
-for django model
-profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True)

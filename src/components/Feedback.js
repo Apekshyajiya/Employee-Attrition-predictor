@@ -1,6 +1,12 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 
 const Feedback = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert('Feedback submitted');
+  }  
+  
   return (
     <div className='feedback-conatiner'>
         <div className="contact-page-wrapper">
@@ -9,7 +15,7 @@ const Feedback = () => {
             <div className="contact-form-container">
                 <input type="text" placeholder="Your feedback" />
             </div>
-            <p>send feedback</p>
+            <Button variant="primary" type="submit" onClick={handleSubmit}>Send Feedback</Button>
         </div>
     </div>
   )

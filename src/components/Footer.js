@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="footer-wrapper">
       <div className="footer-section-one">
         <div className="footer-logo-container">
-          <p><h1>LOGO</h1></p>
+          <p><h1>ECHO</h1></p>
         </div>
         <div className="footer-icons">
           <a href='/'><BsTwitter /></a>
@@ -27,15 +27,16 @@ const Footer = () => {
           <span><a href='/'>About Us</a></span>
         </div>
         <div className="footer-section-columns">
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;999-888-777</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9395-602-061</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6901-553-665</span>
           <span><a>apekshyajiya.25@gmail.com</a></span>
-          <span><a>nitishaabaruah@gmail.com</a></span>
+          <span><a>nitishaabarua@gmail.com</a></span>
         </div>
       </div>
       </div>
       <div className='created-with'>
-         <p>Created with ❤️</p>
-         <p>&nbsp;&nbsp;&nbsp;&copy;logo2024</p>
+         <p>Created with ❤</p>
+         <p>&nbsp;&nbsp;&nbsp;&copy;echo2024</p>
       </div> 
     </div>
 

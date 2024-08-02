@@ -17,7 +17,8 @@ const Home = () => {
                   Your go-to assistant
                 </h1>
                 <p className="primary-text">
-                  For keeping you in track!
+                Your trusted assistant, always here to keep you on track and
+                moving forward!
                 </p>
             </div>
           </div>
