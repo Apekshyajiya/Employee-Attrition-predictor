@@ -4,6 +4,7 @@ import MainLayout from "../src/Layout/MainLayout"
 import LoginPage from "../src/pages/LoginPage"
 import SignupPage from "../src/pages/SignupPage"
 import UserProfile from "../src/pages/UserProfile"
+import Edit_Profile from "../src/pages/Edit_profile";
 import Predictor from "../src/pages/Predictor"
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
@@ -19,6 +20,8 @@ function App() {
       <Route path="/user" element={<UserProfile />} />
       <Route path="/logout" element={<LoginPage />} />
       <Route path="/predictor" element={<Predictor />} />
+      <Route path="/edit_profile" element={<Edit_Profile />} />
+
 
 
     </Route>

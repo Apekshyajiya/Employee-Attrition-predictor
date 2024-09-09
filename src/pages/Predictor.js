@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import AnimatedLogo from "../components/AnimatedLogo";
 import Button from 'react-bootstrap/Button';
 
-
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
@@ -13,7 +12,6 @@ axios.defaults.withCredentials = true;
 const client = axios.create({
   baseURL: "http://127.0.0.1:8000/"
 });
-
 
 const Predictor = () => {
   const [predictedVal, setPredictedVal] = useState("");
@@ -38,21 +36,7 @@ const Predictor = () => {
   const [YearswithCurrManager, setYearswithCurrManager] = useState("");
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-
-  //function to send email if necesary
-  const handleSendFeedback = () => {
-    const recipientEmail = document.getElementById('email-id-of-employee').value;
-    const subject = 'Feedback for Employee';
-    const body = 'Please enter your feedback here.';
-    alert('Feedback submitted');
-
-    // Construct the mailto URL
-    const mailtoURL = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Open the user's default email client with the pre-filled email
-    window.location.href = mailtoURL;
-  };
-
+  const [showTooltipIndex, setShowTooltipIndex] = useState(null);
 
   // Function to get CSRF token from cookies
   const getCSRFToken = () => {
@@ -63,11 +47,28 @@ const Predictor = () => {
     return csrfToken;
   };
 
+  // Define handleSendFeedback function
+  const handleSendFeedback = () => {
+    const recipientEmail = document.getElementById('email-id-of-employee').value;
+    const subject = 'Feedback for Employee';
+    const body = 'Please enter your feedback here.';
+    
+    // Alert to notify that feedback was submitted
+    alert('Feedback submitted');
+  
+    // Correctly format the mailto URL with backticks for string interpolation
+    const mailtoURL = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open the user's default email client with the pre-filled email
+    window.location.href = mailtoURL;
+  };
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
-    client.post("http://127.0.0.1:8000/predictor/modelpredicrtor", { dailyrate,
+    client.post("http://127.0.0.1:8000/predictor/modelpredicrtor", { 
+      dailyrate,
       Gender,
       HourlyRate,
       Joblevel,
@@ -85,7 +86,8 @@ const Predictor = () => {
       YearsAtCompany,
       YearsInCurrentRole,
       YearsSinceLastPromotion,
-      YearswithCurrManager, }, {
+      YearswithCurrManager,
+    }, {
       headers: {
         'X-CSRFToken': getCSRFToken(), // Include CSRF token
         'Content-Type': 'application/json'
@@ -96,13 +98,13 @@ const Predictor = () => {
       console.log('Prediction result:', res.data.prediction);
       if (res.data.prediction[0] === 0) {
         setPredictedVal("No");
-    } else {
+      } else {
         setPredictedVal("Yes");
-    }
+      }
     })
-  .catch(err => {
-    console.error('Error:', err);
-  });
+    .catch(err => {
+      console.error('Error:', err);
+    });
   };
 
   const handleReset = (e) => {
@@ -159,6 +161,26 @@ const Predictor = () => {
                 value={dailyrate}
                 onChange={(e) => setDailyrate(e.target.value)}
               />
+              <button
+                onMouseEnter={() => setShowTooltipIndex('dailyrate')}
+                onMouseLeave={() => setShowTooltipIndex(null)}
+                className="info-button"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  marginLeft: '10px',
+                  color: 'blue',
+                }}
+              >
+                ℹ
+              </button>
+              {showTooltipIndex === 'dailyrate' && (
+                <div className="tooltip" style={{ position: 'absolute', backgroundColor: '#555', color: '#fff', padding: '5px', borderRadius: '4px', marginTop: '5px' }}>
+                  Daily Rate is the daily income
+                </div>
+              )}
             </div>
 
             <div className="detail-item">
@@ -184,6 +206,26 @@ const Predictor = () => {
                 value={HourlyRate}
                 onChange={(e) => setHourlyRate(e.target.value)}
               />
+              <button
+                onMouseEnter={() => setShowTooltipIndex('hourlyrate')}
+                onMouseLeave={() => setShowTooltipIndex(null)}
+                className="info-button"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  marginLeft: '10px',
+                  color: 'blue',
+                }}
+              >
+                ℹ
+              </button>
+              {showTooltipIndex === 'hourlyrate' && (
+                <div className="tooltip" style={{ position: 'absolute', backgroundColor: '#555', color: '#fff', padding: '5px', borderRadius: '4px', marginTop: '5px' }}>
+                  Compensation based on the number of hours worked.
+                </div>
+              )}
             </div>
 
             <div className="detail-item">
@@ -256,6 +298,26 @@ const Predictor = () => {
                 value={Monthlyrate}
                 onChange={(e) => setMonthlyrate(e.target.value)}
               />
+              <button
+                onMouseEnter={() => setShowTooltipIndex('monthlyrate')}
+                onMouseLeave={() => setShowTooltipIndex(null)}
+                className="info-button"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  marginLeft: '10px',
+                  color: 'blue',
+                }}
+              >
+                ℹ
+              </button>
+              {showTooltipIndex === 'monthlyrate' && (
+                <div className="tooltip" style={{ position: 'absolute', backgroundColor: '#555', color: '#fff', padding: '5px', borderRadius: '4px', marginTop: '5px' }}>
+                  A set amount paid each month, regardless of the number of hours worked.
+                </div>
+              )}
             </div>
 
             <div className="detail-item">
@@ -363,10 +425,9 @@ const Predictor = () => {
                 onChange={(e) => setYearswithCurrManager(e.target.value)}
               />
             </div>
-
-            <Button type="check">Check Now!</Button>
+            
+            <Button type="submit">Check Now!</Button>
             <Button variant="secondary" type="button" onClick={handleReset}>Reset</Button>
-            {/* <input type="reset" className="btn-reset"></input> */}
           </form>
         </div>
       </div>
@@ -374,32 +435,28 @@ const Predictor = () => {
         <div className="profile-details-results">
           <h4 className="profile-name-extraline">Your results will be visible here once you submit the form</h4>
           <div className="display-results">
-                <div className="display-results">Results :</div>
-                <div className="final-result-val">
-                  {predictedVal === 'No' && (
-                  <p style={{ color: 'green' }}>{predictedVal}</p>
-                  )}
-                  {predictedVal === 'Yes' && (
-                    <>
+            <div className="display-results">Results :</div>
+            <div className="final-result-val">
+              {predictedVal === 'No' && (
+                <p style={{ color: 'green' }}>{predictedVal}</p>
+              )}
+              {predictedVal === 'Yes' && (
+                <>
                   <p style={{ color: 'red' }}>{predictedVal}</p>
                   <div className="contact-page-wrapper">
                     <div className="contact-form-container">
-                    <input type="text" placeholder="Email ID of the employee" id="email-id-of-employee" required/>
+                      <input type="text" placeholder="Email ID of the employee" id="email-id-of-employee" required />
+                    </div>
+                    <Button variant="primary" type="submit" onClick={handleSendFeedback}>Send Feedback</Button>
                   </div>
-                  <Button variant="primary" type="submit" onClick={handleSendFeedback}>Send Feedback</Button>
-           
-                </div>
-                  </>
-                  )}
-                </div>
+                </>
+              )}
+            </div>
           </div>
-              
-          </div>
-
         </div>
+      </div>
     </div>
   );
 };
 
 export default Predictor;
-

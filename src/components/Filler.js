@@ -41,7 +41,7 @@ const Filler = () => {
       <div className="testimonial-section-bottom">
         <img src={ProfilePic} alt="" />
         <p>
-          Amazing App! Really helped me to save a crap lot of time.
+          Amazing App! Really helped me to save a lot of time.
         </p>
         <div className="testimonials-stars-container">
           <AiFillStar />

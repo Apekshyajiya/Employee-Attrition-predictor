@@ -79,8 +79,11 @@ const UserProfile = () => {
             </>
           )}
         </div>
+        <div class='button-container'>
         <a href='/predictor' className='predict-button'>&nbsp;Predict Now</a>
-        <button type='sign-out' className='predict-button' onClick={handleLogout}>&nbsp;Logout</button>
+        <a href='/edit_profile' className='edit-button'>&nbsp;Edit Profile</a>
+        </div>
+        <button type='sign-out' className='log-button' onClick={handleLogout}>&nbsp;Logout</button>
       </div>
     </div>
   );

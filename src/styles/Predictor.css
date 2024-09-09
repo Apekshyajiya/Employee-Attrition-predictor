@@ -48,6 +48,13 @@ body {
   font-size: 1.3rem;
   font-weight: 600;
 }
+.react-tooltip {
+  background-color: #555;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+}
 .btn {
   letter-spacing: 0.1em; 
   font-weight: 400; 
